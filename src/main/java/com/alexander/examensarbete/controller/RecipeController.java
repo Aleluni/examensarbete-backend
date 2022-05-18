@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200")
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -21,7 +21,6 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @GetMapping("/api/getrecipe")
     public ResponseEntity<List<Recipe>> getAllUsers(){
         List<Recipe> recipes = recipeService.findAllRecpies();
@@ -29,7 +28,6 @@ public class RecipeController {
         return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/api/recipepost")
     public ResponseEntity<Recipe> addUser(@RequestBody Recipe recipe){
        Recipe newRecipe = recipeService.addRecipe(recipe);
